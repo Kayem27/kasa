@@ -1,0 +1,38 @@
+*, ::before, ::after {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: 'Montserrat';
+}
+
+a{
+    color: inherit;
+}
+
+li{
+    list-style: none;
+}
+
+body{
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-top: 1%;
+    @media screen and (max-width: 500px) {
+        padding-top: 20px;
+    }
+}
+
+// mixins
+@mixin flex($direction: row, $justify: center, $align: center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+  }
+
+// Variables
+$couleur-1 : #fff;
+$couleur-2 : #FF6060;
+$couleur-3 : #F7F7F7;
