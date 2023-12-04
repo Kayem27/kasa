@@ -1,18 +1,13 @@
-import React from 'react';
-import Header from '../components/Header';
-import Banner from '../components/Banner';
-import Gallery from '../components/Gallery';
-import Footer from '../components/Footer';
+import Banner from "../components/Banner";
+import Gallery from "../components/Gallery";
 
 const home = () => {
-    return (
-        <div className='home'>
-            <Header />
-            <Banner />
-            <Gallery />
-            <Footer />
-        </div>
-    );
+  return (
+    <div className="home">
+      <Banner page='home' />
+      <Gallery />
+    </div>
+  );
 };
 
 export default home;
