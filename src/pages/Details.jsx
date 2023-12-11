@@ -1,7 +1,6 @@
-import React from "react";
 import data from "../data";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Carousel from "../components/Carousel";
 import Collapse from "../components/Collapse";
 import greyStar from "../assets/grey_star.png";
@@ -9,35 +8,30 @@ import redStar from "../assets/red_star.png";
 import "../style/pages/details.scss";
 
 const Details = () => {
-  const [imageSlider, setImageSlider] = useState([]);
-
+  const [dataCurrentDetails, setDataCurrentDetails] = useState({});
   const idDetails = useParams("id").id;
-  const dataCurrentDetails = data.filter(
-    (data) => data.id === idDetails
-  );
+  const Navigate = useNavigate();
 
   useEffect(() => {
-    const dataCurrentDetails = data.filter(
-      (data) => data.id === idDetails
-    );
-    setImageSlider(dataCurrentDetails[0].pictures);
-  }, [idDetails]);
-
-  const name = dataCurrentDetails[0].host.name.split(" ");
-  const rating = dataCurrentDetails[0].rating;
-  const description = dataCurrentDetails[0].description;
-  const equipments = dataCurrentDetails[0].equipments;
+    const logement = data.filter((data) => data.id === idDetails)
+    if(logement.length !== 1 ){
+      Navigate('/cette page n\'existe pas');
+    } else {
+      setDataCurrentDetails(logement[0]);
+    }
+  }, [idDetails, Navigate]);
 
   return (
+    dataCurrentDetails.pictures &&
     <div>
-      <Carousel imageCarousel={imageSlider} />
+      <Carousel imageCarousel={dataCurrentDetails.pictures} />
       <div className="details">
         <div className="details_content">
           <div className="details_content_infos">
-            <h1>{dataCurrentDetails[0].title}</h1>
-            <p>{dataCurrentDetails[0].location}</p>
+            <h1>{dataCurrentDetails.title}</h1>
+            <p>{dataCurrentDetails.location}</p>
             <div>
-              {dataCurrentDetails[0].tags.map((tag, index) => {
+              {dataCurrentDetails.tags.map((tag, index) => {
                 return <button key={index}>{tag}</button>;
               })}
             </div>
@@ -45,11 +39,11 @@ const Details = () => {
           <div className="details_content_host">
             <div>
               <div className="details_content_host_name">
-                <span>{name[0]}</span>
-                <span>{name[1]}</span>
+                <span>{dataCurrentDetails.host.name.split(" ")[0]}</span>
+                <span>{dataCurrentDetails.host.name.split(" ")[1]}</span>
               </div>
               <img
-                src={dataCurrentDetails[0].host.picture}
+                src={dataCurrentDetails.host.picture}
                 alt="host of this details"
               />
             </div>
@@ -60,7 +54,7 @@ const Details = () => {
                 return (
                   <img
                     key={index}
-                    src={ratingValue <= rating ? redStar : greyStar}
+                    src={ratingValue <= dataCurrentDetails.rating ? redStar : greyStar}
                     alt="star"
                   />
                 );
@@ -70,10 +64,10 @@ const Details = () => {
         </div>
         <div className="details_collapse">
           <div className="details_collapse_item">
-            <Collapse title={"Description"} content={description} />
+            <Collapse title={"Description"} content={dataCurrentDetails.description} />
           </div>
           <div className="details_collapse_item">
-            <Collapse title={"Équipements"} content={equipments} />
+            <Collapse title={"Équipements"} content={dataCurrentDetails.equipments} />
           </div>
         </div>
       </div>

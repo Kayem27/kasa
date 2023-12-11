@@ -1,4 +1,3 @@
-import React from 'react';
 import logo from '../assets/logo.png'
 import Navigation from '../components/Navigation';
 import '../style/components/header.scss'
