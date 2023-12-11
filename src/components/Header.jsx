@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png'
 import Navigation from '../components/Navigation';
 import '../style/components/header.scss'
@@ -5,9 +6,9 @@ import '../style/components/header.scss'
 const Header = () => {
     return (
         <header className='header'>
-			<h1>
+			<Link to="/">
 				<img src={logo} alt="logo de Kasa" />
-			</h1>
+			</Link>
 			<Navigation />
 		</header>
     );

@@ -1,8 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../style/components/navigation.scss";
+import { useEffect, useState } from "react";
 
 const Navigation = () => {
-  const currentRoute = window.location.pathname;
+  const [currentRoute, setCurrentRoute] = useState('/');
+  const location = useLocation();
+
+  useEffect(()=>{
+    setCurrentRoute(location.pathname)
+  }, [location])
+  
   return (
     <nav className="nav">
       <ul className="nav_list">
