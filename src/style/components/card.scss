@@ -7,6 +7,10 @@
     border-radius: 10px;
     cursor: pointer;
     overflow: hidden;
+    // Animation 
+    opacity: 0;
+    transform: translateY(-30px);
+    animation: apparition 0.4s 1s ease-out forwards;
     @media screen and (max-width: 1230px){
         width: 47%;   
     }

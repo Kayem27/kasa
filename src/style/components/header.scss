@@ -5,6 +5,9 @@
     height: 68px;
     max-width: 95%;
     margin: 0 auto;
+    opacity: 0;
+    transform: translateY(-30px);
+    animation: apparition 0.4s 1.6s ease-out forwards;
     @media screen and (max-width: 900px){
         height: 40px;
     }
